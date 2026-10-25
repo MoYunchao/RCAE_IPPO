@@ -78,6 +78,19 @@ output/ippo_batches/<批次时间戳>/
 `batch_summary.json` 记录每轮命令、目录、状态、停止原因、FCR 和 T95；每轮目录还保留推理日志及监督器生成的其他 CSV。
 `output/` 被 Git 忽略，需要另行打包传回。
 
+## real 地图四次实验
+
+三个机器人设计容量均为 0.70 Ah，模型与上述实验一致：
+
+```bash
+python3 -u run_ippo_real_4runs.py
+```
+
+共运行四次，每轮结束并清理进程后等待 30 秒。停止、超时和错误处理与八次脚本共用。
+结果保存于 `output/ippo_real_batches/<批次时间戳>/real/run_01/` 至 `run_04/`，
+批次根目录保存 `batch_summary.json`。预览：`python3 run_ippo_real_4runs.py --dry-run`。
+脚本更新后无需重新编译工作空间。
+
 ## 整理时的验证
 
 已核对模型哈希，并用此工作空间的推理网络严格加载模型、验证三机器人四维动作输出。

@@ -14,10 +14,10 @@ MODEL = 'models/inference/ippo/best_model.pt'
 PLAN = [(map_name, repeat) for map_name in ('default', 'maze40') for repeat in range(1, 5)]
 
 
-def command_for(map_name):
+def command_for(map_name, battery_capacity='0.40'):
     return ['bash', 'start_all_ippo.sh', '--map', map_name, MODEL,
-            'robot0_battery_capacity_ah:=0.40', 'robot1_battery_capacity_ah:=0.40',
-            'robot2_battery_capacity_ah:=0.40']
+            f'robot0_battery_capacity_ah:={battery_capacity}', f'robot1_battery_capacity_ah:={battery_capacity}',
+            f'robot2_battery_capacity_ah:={battery_capacity}']
 
 
 def process_table():
@@ -145,16 +145,16 @@ def save_batch(path, data):
     temporary.replace(path)
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+def main(*, plan=PLAN, battery_capacity='0.40', batch_folder='ippo_batches', description=__doc__):
+    parser = argparse.ArgumentParser(description=description)
     parser.add_argument('--timeout-sec', type=float, default=1800,
                         help='Abort batch if a run has no mission summary within this many seconds')
     parser.add_argument('--dry-run', action='store_true', help='Print the plan without starting ROS')
     args = parser.parse_args()
     if not 0 < args.timeout_sec < float('inf'):
         parser.error('--timeout-sec must be finite and positive')
-    for index, (map_name, repeat) in enumerate(PLAN, 1):
-        print(f'[{index}/{len(PLAN)}] {map_name}, repeat {repeat}: ' + ' '.join(command_for(map_name)), flush=True)
+    for index, (map_name, repeat) in enumerate(plan, 1):
+        print(f'[{index}/{len(plan)}] {map_name}, repeat {repeat}: ' + ' '.join(command_for(map_name, battery_capacity)), flush=True)
     print('Wait 30 seconds after process cleanup between runs.', flush=True)
     if args.dry_run:
         return
@@ -166,23 +166,23 @@ def main():
     def on_terminate(signum, frame):
         raise KeyboardInterrupt
     previous_handler = signal.signal(signal.SIGTERM, on_terminate)
-    batch_dir = ROOT / 'output/ippo_batches' / datetime.now().strftime('%Y%m%d_%H%M%S_%f')
+    batch_dir = ROOT / 'output' / batch_folder / datetime.now().strftime('%Y%m%d_%H%M%S_%f')
     batch_dir.mkdir(parents=True)
     manifest = {'model': MODEL, 'repeats_per_map': 4, 'pause_seconds': 30,
-                'battery_capacity_ah': [0.40, 0.40, 0.40], 'timeout_sec': args.timeout_sec,
+                'battery_capacity_ah': [float(battery_capacity)] * 3, 'timeout_sec': args.timeout_sec,
                 'status': 'running', 'runs': []}
     manifest_path = batch_dir / 'batch_summary.json'
     save_batch(manifest_path, manifest)
     print('Batch results:', batch_dir, flush=True)
     try:
-        for index, (map_name, repeat) in enumerate(PLAN, 1):
-            command = command_for(map_name)
+        for index, (map_name, repeat) in enumerate(plan, 1):
+            command = command_for(map_name, battery_capacity)
             directory = batch_dir / map_name / f'run_{repeat:02d}'
             row = {'map': map_name, 'repeat': repeat, 'command': command,
                    'directory': str(directory), 'status': 'running'}
             manifest['runs'].append(row)
             save_batch(manifest_path, manifest)
-            print(f'[{index}/{len(PLAN)}] Starting {map_name} #{repeat}; log: {directory / "console.log"}', flush=True)
+            print(f'[{index}/{len(plan)}] Starting {map_name} #{repeat}; log: {directory / "console.log"}', flush=True)
             try:
                 row.update(run_once(command, directory, args.timeout_sec))
                 row['status'] = 'completed'
@@ -192,8 +192,8 @@ def main():
                 raise
             finally:
                 save_batch(manifest_path, manifest)
-            print(f'[{index}/{len(PLAN)}] Finished: {row["stop_reason"]}; processes stopped.', flush=True)
-            if index < len(PLAN):
+            print(f'[{index}/{len(plan)}] Finished: {row["stop_reason"]}; processes stopped.', flush=True)
+            if index < len(plan):
                 print('Waiting 30 seconds before the next run...', flush=True)
                 time.sleep(30)
         manifest['status'] = 'completed'
