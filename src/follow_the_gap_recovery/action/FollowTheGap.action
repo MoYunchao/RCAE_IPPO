@@ -1,0 +1,9 @@
+#goal definition
+builtin_interfaces/Duration time_allowance
+---
+#result definition
+builtin_interfaces/Duration total_elapsed_time
+float32 closest_obstacle_distance
+---
+#feedback definition
+float32 current_closest_distance

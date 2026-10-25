@@ -1,0 +1,2 @@
+std_msgs/Header header
+FrontierInfoExtended[] frontiers_extended

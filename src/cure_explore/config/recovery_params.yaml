@@ -1,0 +1,84 @@
+# Recovery Manager 配置参数
+# 用于调整机器人恢复行为
+
+# 机器人ID（由 launch 文件设置，通常不需要在此配置）
+# robot_id: 1
+
+# 卡住检测参数
+stuck_threshold: 15.0  # 秒 - 多长时间不动判定为卡住
+                       # 建议范围: 5.0-15.0
+                       # - 太小: 频繁触发恢复（影响效率）
+                       # - 太大: 响应迟钝（机器人等待过久）
+
+position_tolerance: 0.15  # 米 - 位置变化小于此值视为"不动"
+                          # 建议范围: 0.1-0.3
+                          # - 太小: 正常抖动也触发
+                          # - 太大: 小幅移动被忽略
+
+# 障碍物检测参数
+obstacle_check_resolution: 0.05  # 米 - 检测直线路径时的采样间隔
+                                # 建议范围: 0.05-0.2
+                                # - 太小: 计算量大
+                                # - 太大: 可能遗漏小障碍物
+
+obstacle_threshold: 50  # 占据栅格阈值 [0-100]
+                        # > 此值视为障碍物
+                        # 建议范围: 40-70
+                        # - 太小: 未知区域也视为障碍
+                        # - 太大: 部分障碍物被忽略
+
+# 恢复点选择参数
+min_recovery_distance: 1.0  # 米 - 恢复点与当前位置的最小距离
+                            # 建议范围: 0.5-2.0
+                            # - 太小: 恢复效果不明显
+                            # - 太大: 可能找不到合适点
+
+recovery_goal_tolerance: 0.5  # 米 - 到达恢复点的判定距离
+                              # 建议范围: 0.3-0.8
+                              # - 太小: 难以精确到达
+                              # - 太大: 提前切换状态
+
+# 后退策略参数（当找不到路径上的恢复点时）
+backward_distance: 1.0  # 米 - 后退距离
+                        # 建议范围: 0.5-2.0
+
+# 高级参数
+max_recovery_attempts: 3  # 最大恢复尝试次数
+                          # 超过此次数可以触发更高级的恢复策略
+                          # (当前版本未实现)
+
+recovery_timeout: 30.0  # 秒 - 单次恢复超时时间
+                        # 超过此时间自动放弃当前恢复尝试
+                        # (当前版本未实现)
+
+# 日志级别
+log_level: "INFO"  # DEBUG, INFO, WARN, ERROR
+                   # DEBUG: 显示详细的障碍检测和恢复点选择信息
+                   # INFO: 显示状态变化和关键操作
+                   # WARN: 只显示警告和错误
+
+# 不同环境的推荐配置
+
+# === 狭窄室内环境 ===
+# stuck_threshold: 6.0
+# position_tolerance: 0.1
+# obstacle_check_resolution: 0.05
+# min_recovery_distance: 0.8
+
+# === 开阔室外环境 ===
+# stuck_threshold: 10.0
+# position_tolerance: 0.2
+# obstacle_check_resolution: 0.15
+# min_recovery_distance: 1.5
+
+# === 密集障碍环境 ===
+# stuck_threshold: 8.0
+# position_tolerance: 0.15
+# obstacle_check_resolution: 0.08
+# min_recovery_distance: 1.0
+# backward_distance: 1.5
+
+# === 多机器人协同 ===
+# stuck_threshold: 7.0  # 更快响应避免拥堵
+# position_tolerance: 0.15
+# min_recovery_distance: 1.2  # 增加恢复距离减少冲突

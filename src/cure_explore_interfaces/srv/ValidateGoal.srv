@@ -1,0 +1,9 @@
+# Request: goal position to validate
+geometry_msgs/Point goal_position
+
+---
+
+# Response: validation result
+bool is_reachable
+geometry_msgs/Point[] path_points
+string message

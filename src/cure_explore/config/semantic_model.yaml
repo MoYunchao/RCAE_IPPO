@@ -1,0 +1,306 @@
+semantic_objects:
+- id: 1
+  category: emergency_exit
+  name: 门1
+  position:
+    x: -12.89
+    y: 11.57
+    z: 0.0
+  radius: 0.9
+  priority: 10
+  description: ''
+- id: 2
+  category: emergency_exit
+  name: 门2
+  position:
+    x: -10.72
+    y: 10.62
+    z: 0.0
+  radius: 1.1
+  priority: 10
+  description: ''
+- id: 3
+  category: emergency_exit
+  name: 门3
+  position:
+    x: -12.63
+    y: 7.19
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 4
+  category: emergency_exit
+  name: 门4
+  position:
+    x: -13.67
+    y: -2.57
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 5
+  category: emergency_exit
+  name: 门5
+  position:
+    x: -12.54
+    y: -9.72
+    z: 0.0
+  radius: 1.2
+  priority: 10
+  description: ''
+- id: 6
+  category: emergency_exit
+  name: 门6
+  position:
+    x: -6.9
+    y: 0.17
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 7
+  category: emergency_exit
+  name: 门7
+  position:
+    x: -1.22
+    y: 1.6
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 8
+  category: emergency_exit
+  name: 门8
+  position:
+    x: 2.64
+    y: -1.4
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 9
+  category: emergency_exit
+  name: 门9
+  position:
+    x: -0.57
+    y: -8.03
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 10
+  category: emergency_exit
+  name: 门10
+  position:
+    x: -6.99
+    y: -12.07
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 11
+  category: emergency_exit
+  name: 门11
+  position:
+    x: -2.87
+    y: -11.85
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 12
+  category: emergency_exit
+  name: 门12
+  position:
+    x: 1.51
+    y: -11.72
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 13
+  category: emergency_exit
+  name: 门13
+  position:
+    x: 5.28
+    y: -13.06
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 14
+  category: emergency_exit
+  name: 门14
+  position:
+    x: 9.49
+    y: 3.37
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 15
+  category: emergency_exit
+  name: 门15
+  position:
+    x: 12.14
+    y: -5.52
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 16
+  category: emergency_exit
+  name: 门16
+  position:
+    x: 12.01
+    y: -10.5
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 17
+  category: survivor
+  name: 幸存者
+  position:
+    x: 4.76
+    y: -10.33
+    z: 0.0
+  radius: 1.3
+  priority: 10
+  description: ''
+- id: 18
+  category: survivor
+  name: 幸存者
+  position:
+    x: -14.93
+    y: 4.33
+    z: 0.0
+  radius: 1.3
+  priority: 10
+  description: ''
+- id: 19
+  category: victim
+  name: 伤者
+  position:
+    x: -7.51
+    y: -8.34
+    z: 0.0
+  radius: 1.1
+  priority: 10
+  description: ''
+- id: 20
+  category: emergency_exit
+  name: 门17
+  position:
+    x: 9.84
+    y: -1.79
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+categories:
+  victim:
+    display_name: 受困人员
+    color:
+    - 1.0
+    - 0.0
+    - 0.0
+    hex_color: '#FF0000'
+    marker_type: sphere
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.5
+  survivor:
+    display_name: 伤员
+    color:
+    - 1.0
+    - 0.5019607843137255
+    - 0.0
+    hex_color: '#FF8000'
+    marker_type: sphere
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.5
+  structural_hazard:
+    display_name: 结构危险
+    color:
+    - 0.5450980392156862
+    - 0.27058823529411763
+    - 0.07450980392156863
+    hex_color: '#8B4513'
+    marker_type: sphere
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.5
+  fire_hazard:
+    display_name: 火源危险
+    color:
+    - 1.0
+    - 0.27058823529411763
+    - 0.0
+    hex_color: '#FF4500'
+    marker_type: sphere
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.5
+  toxic_hazard:
+    display_name: 有毒危险
+    color:
+    - 1.0
+    - 1.0
+    - 0.0
+    hex_color: '#FFFF00'
+    marker_type: sphere
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.5
+  medical_supply:
+    display_name: 医疗物资
+    color:
+    - 0.0
+    - 1.0
+    - 0.0
+    hex_color: '#00FF00'
+    marker_type: sphere
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.5
+  emergency_exit:
+    display_name: 紧急出口
+    color:
+    - 0.0
+    - 0.0
+    - 1.0
+    hex_color: '#0000FF'
+    marker_type: sphere
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.5
+  rescue_equipment:
+    display_name: 救援设备
+    color:
+    - 0.5019607843137255
+    - 0.5019607843137255
+    - 0.5019607843137255
+    hex_color: '#808080'
+    marker_type: sphere
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.5
+  supply_cache:
+    display_name: 补给物资
+    color:
+    - 0.0
+    - 0.7490196078431373
+    - 1.0
+    hex_color: '#00BFFF'
+    marker_type: sphere
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.5
+publisher_config:
+  update_rate: 1.0
+  exploration_threshold: 0
+  check_radius: 1.5
+  min_explored_ratio: 0.2

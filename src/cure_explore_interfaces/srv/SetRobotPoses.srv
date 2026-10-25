@@ -1,0 +1,7 @@
+# Service to dynamically set robot initial poses
+# Called during system reset to update robot positions
+
+cure_explore_interfaces/RobotPose[] poses    # Array of robot poses
+---
+bool success                                  # Whether the update succeeded
+string message                                # Status message

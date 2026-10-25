@@ -1,0 +1,54 @@
+# Resource Monitor Configuration
+# 资源监控配置文件
+
+# ==================== 通用配置 ====================
+resource_monitor:
+  ros__parameters:
+    mode: "simulation"  # 'simulation' 或 'real'
+    robot_id: 0
+    robot_namespace: "robot_"
+    update_rate: 1.0  # Hz
+    publish_battery: false
+    publish_cpu: true
+    publish_bandwidth: true
+    low_battery_threshold: 0.2
+    recharge_cooldown_sec: 5.0
+    publish_low_battery_count: true
+    
+    # ==================== 模拟模式配置 ====================
+    sim:
+      # 电量参数
+      initial_battery: 1.0          # 初始电量 100%
+      base_consumption: 0.0004      # 基础消耗 0.04%/秒
+      movement_consumption: 0.005   # 移动消耗 0.5%/米
+      sensor_consumption: 0.0002    # 传感器消耗 0.02%/秒
+      
+      # 带宽参数
+      max_bandwidth: 10.0           # 最大带宽 10 Mbps
+      min_bandwidth: 1.0            # 最小带宽 1 Mbps
+      bandwidth_decay_rate: 0.35    # 衰减率 0.35 Mbps/米
+      base_station_x: 0.0           # 基站 X 坐标
+      base_station_y: 0.0           # 基站 Y 坐标
+
+      # 噪声参数
+      battery_noise: 0.0002         # 电量噪声
+      bandwidth_noise: 0.2          # 带宽噪声（Mbps）
+      # CPU 参数（0~1）
+      cpu_idle: 0.25
+      cpu_speed_ref: 1.0
+      cpu_speed_gain: 0.50
+      cpu_cmd_linear_gain: 0.12
+      cpu_cmd_angular_gain: 0.08
+      cpu_noise: 0.03
+    
+    # ==================== 真实模式配置 ====================
+    real:
+      # 电池配置
+      battery_topic: "/battery"
+      battery_source: "topic"  # 'topic', 'system', 'custom'
+      
+      # 网络配置
+      network_interface: "wlan0"
+      base_station_ip: "192.168.1.1"
+      bandwidth_method: "ping"  # 'ping', 'iperf', 'monitor'
+      bandwidth_test_interval: 5.0  # 秒

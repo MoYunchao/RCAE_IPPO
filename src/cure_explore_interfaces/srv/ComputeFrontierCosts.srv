@@ -1,0 +1,12 @@
+# ComputeFrontierCosts.srv
+# 计算前沿簇到所有机器人的距离代价
+
+# 请求
+FrontierCluster[] frontiers   # 需要计算代价的前沿簇数组
+
+---
+
+# 响应
+FrontierCost[] frontier_costs # 每个前沿簇到所有机器人的代价
+bool success                  # 是否成功计算
+string message                # 附加信息或错误消息

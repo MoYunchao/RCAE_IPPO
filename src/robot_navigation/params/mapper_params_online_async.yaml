@@ -1,0 +1,91 @@
+/**:
+  ros__parameters:
+
+    # Plugin params
+    solver_plugin: solver_plugins::CeresSolver
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+    ceres_trust_strategy: LEVENBERG_MARQUARDT
+    ceres_dogleg_type: TRADITIONAL_DOGLEG
+    ceres_loss_function: None
+
+    # ROS Parameters
+    odom_frame: odom 
+    map_frame: map
+    base_frame: base_link
+    scan_topic: scan
+    qos_overrides:
+      scan:
+        subscription:
+          reliability: reliable
+          durability: volatile
+          history: keep_last
+          depth: 100
+    mode: mapping #localization
+
+    # if you'd like to immediately start continuing a map at a given pose
+    # or at the dock, but they are mutually exclusive, if pose is given
+    # will use pose
+    #map_file_name: test_steve
+    map_start_pose: [-10.0, 0.0, 0.06]  # 强制 map 和 odom 初始对齐
+    #map_start_at_dock: true
+
+    debug_logging: false
+    throttle_scans: 1                 # 处理每一帧激光
+    transform_publish_period: 0.02   # 50Hz TF发布，匹配控制频率
+    map_update_interval: 0.1          # 加快地图更新：10Hz，障碍物快速显示
+    resolution: 0.05                  # 5cm分辨率
+    max_laser_range: 20.0             # 匹配实际雷达最大范围
+    minimum_time_interval: 0.0       # 不限制处理频率，尽快处理每帧
+    transform_timeout: 1.0
+    tf_buffer_duration: 5.0          # 减少到 3 秒，加快重置速度（原 15 秒）
+    occupancy_grid_duration: 5.0     # 占用网格历史时长：延长到5秒，减少噪点闪烁
+    minimum_passing_scans: 3         # 需要3次ray-trace未击中才清除，减少噪点
+    stack_size_to_use: 40000000 #// program needs a larger stack size to serialize large maps
+    enable_interactive_mode: true
+    
+    # Initial Pose - 允许从 RViz 设置初始位姿
+    # slam_toolbox 会订阅 /initialpose 话题
+    use_pose_from_topic: true
+
+    # General Parameters
+    # 里程计完全准确（仿真环境），禁用 scan matching，只用于建图
+    use_scan_matching: false          # 禁用激光匹配修正，map≡odom
+    use_scan_barycenter: true
+    minimum_travel_distance: 0.0      # 立即建图，不等移动
+    minimum_travel_heading: 0.0       # 立即建图，不等旋转
+    first_scan_only: false            # 持续处理扫描
+    immediate_publishing: true        # 立即发布地图
+    scan_buffer_size: 100             # 增加缓冲深度，积累更多数据建图
+    scan_buffer_maximum_scan_distance: 20.0  # 恢复到与 max_laser_range 一致
+    link_match_minimum_response_fine: 0.7    # 提高到0.7，拒绝低质量匹配 (原0.5)
+    link_scan_maximum_distance: 1.0   # 减小，只关联近距离扫描 (原1.5)
+    loop_search_maximum_distance: 3.0 # 🔴 减小回环搜索范围，减少误匹配
+    do_loop_closing: false            # 🔴 在探索阶段禁用回环，避免错误闭环导致地图扭曲
+    loop_match_minimum_chain_size: 20 # 提高要求，只接受非常确定的回环
+    loop_match_maximum_variance_coarse: 1.5   # 🔴 更严格的粗匹配
+    loop_match_minimum_response_coarse: 0.6   # 🔴 提高粗匹配阈值
+    loop_match_minimum_response_fine: 0.7     # 🔴 提高精匹配阈值
+
+    # Correlation Parameters - Correlation Parameters
+    # 减小搜索空间，要求更高的局部一致性，减少大幅度跳变
+    correlation_search_space_dimension: 0.3   # 减小: 只在 ±0.3m 范围内搜索匹配 (原0.5)
+    correlation_search_space_resolution: 0.005 # 提高精度 (原0.01)
+    correlation_search_space_smear_deviation: 0.05 # 减小模糊容忍 (原0.1)
+
+    # Correlation Parameters - Loop Closure Parameters
+    loop_search_space_dimension: 8.0
+    loop_search_space_resolution: 0.05
+    loop_search_space_smear_deviation: 0.03
+
+    # Scan Matcher Parameters
+    # 提高惩罚系数，让 SLAM 更信任里程计，减少激进修正
+    distance_variance_penalty: 0.8    # 提高，更严格的距离匹配要求 (原0.6)
+    angle_variance_penalty: 1.5       # 提高，更严格的角度匹配要求 (原1.2)
+
+    fine_search_angle_offset: 0.00087 # 再减半：更精细的角度搜索 (原0.00174)
+    coarse_search_angle_offset: 0.175 # 减半：缩小粗搜索范围 (原0.349 = 20° → 10°)
+    coarse_angle_resolution: 0.00875  # 减半：更精细的粗搜索 (原0.0175)
+    minimum_angle_penalty: 0.98       # 提高：要求更好的角度对齐 (原0.95)
+    minimum_distance_penalty: 0.75    # 提高：要求更好的距离对齐 (原0.6)
+    use_response_expansion: true      # 保持启用

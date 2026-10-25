@@ -1,0 +1,9 @@
+# Service to reset the entire multi-robot exploration system
+# Coordinates reset across simulation, robots, and server
+
+cure_explore_interfaces/RobotPose[] new_poses  # New robot poses (empty = keep current)
+bool reset_simulation                          # Whether to reset Gazebo simulation
+---
+bool success                                   # Whether the reset succeeded
+string message                                 # Status message
+float64 reset_duration_seconds                 # Time taken for the reset operation

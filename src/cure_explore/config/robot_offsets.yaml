@@ -1,0 +1,31 @@
+# 机器人初始位姿偏移配置
+# 定义 global_map -> robot_{id}/map 的变换
+# 对应关系: 仿真 robot_i -> 服务器 robot_{i+1}
+# 仿真 robot_0 (0, 0) -> 服务器 robot_1
+# 仿真 robot_1 (1.5, 1.5) -> 服务器 robot_2
+# 仿真 robot_2 (-1.5, -1.5) -> 服务器 robot_3
+
+robot_1:
+  offset_x: 0.0
+  offset_y: 0.0
+  offset_theta: 0.0
+
+robot_2:
+  offset_x: 1.5
+  offset_y: 1.5
+  offset_theta: 0.0
+
+robot_3:
+  offset_x: -1.5
+  offset_y: -1.5
+  offset_theta: 0.0
+
+robot_4:
+  offset_x: 0.0
+  offset_y: 0.0
+  offset_theta: 0.0
+
+robot_5:
+  offset_x: 0.0
+  offset_y: 0.0
+  offset_theta: 0.0

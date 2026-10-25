@@ -1,0 +1,9 @@
+{
+  "algorithm": "IPPO",
+  "training_run": "ippo_random_battery_seed42",
+  "checkpoint": "best_model.pt",
+  "sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+  "local_obs_dim": 10,
+  "critic_obs_dim": 10,
+  "action_schema_version": "fuzzy_weights_v1"
+}

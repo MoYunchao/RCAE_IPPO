@@ -1,0 +1,8 @@
+fuzzy_decision_node:
+  ros__parameters:
+    weight_extremely_high: 10.0
+    weight_high: 8.0
+    weight_medium: 5.0
+    weight_low: 2.0
+    robot_id: 0
+    topic_namespace_prefix: "/robot1"

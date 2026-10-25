@@ -1,0 +1,15 @@
+battery_state_sim:
+  ros__parameters:
+    update_rate_hz: 10.0  # Hz
+    design_capacity_ah: 0.4
+    initial_charge_ratio: 1.0
+    failure_charge_ratio: 0.0
+
+    camera_current: 0.6  # Ah
+    lidar_current: 0.5  # Ah
+    compute_current_gain: 1.2
+    communication_current_gain: 0.4
+    max_bandwidth_mbps: 10.0
+    idle_current: 0.3  # Ah
+    kv: 2.0
+    kw: 0.6

@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <model name="water_patch">
+    <static>true</static>
+
+    <link name="link">
+
+      <!-- 只定义视觉 -->
+      <visual name="water_visual">
+        <geometry>
+          <plane>
+            <size>3 2</size>   <!-- 水面大小（米） -->
+          </plane>
+        </geometry>
+
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+
+        <transparency>0.3</transparency>
+      </visual>
+
+    </link>
+  </model>
+
+</sdf>

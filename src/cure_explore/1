@@ -1,0 +1,4 @@
+ros2 launch cure_explore test_reset.launch.py robot_count:=3 robot_poses:=\"[[0,0,0],[1,1,0],[-1,-1,0]]\"
+ros2 service call /set_robot_poses cure_explore_interfaces/srv/SetRobotPoses "{poses: [{robot_id: 'robot_1', x: 0.0, y: 0.0, yaw: 0.0}, {robot_id: 'robot_2', x: 1.0, y: 1.0, yaw: 0.0}, {robot_id: 'robot_3', x: -1.0, y: -1.0, yaw: 0.0}]}"
+
+ros2 service call /set_robot_poses cure_explore_interfaces/srv/SetRobotPoses       "{poses: [{robot_id: 'robot_1', x: 0.0, y: 0.0, yaw: 0.0}, {robot_id: 'robot_2', x: 0.5, y: 0.0, yaw: 0.0}]}"

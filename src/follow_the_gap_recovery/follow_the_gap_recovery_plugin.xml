@@ -1,0 +1,11 @@
+<library path="follow_the_gap_recovery_plugin">
+  <class name="follow_the_gap_recovery/FollowTheGapRecovery" type="follow_the_gap_recovery::FollowTheGapRecovery" base_class_type="nav2_core::Behavior">
+    <description>
+      Follow the Gap Recovery plugin for Nav2.
+      This recovery behavior uses the "follow the gap" algorithm to navigate
+      omnidirectional robots towards the largest gap in laser scan data.
+      The recovery stops when the closest obstacle is more than a configurable
+      distance away (default: 0.2m).
+    </description>
+  </class>
+</library>

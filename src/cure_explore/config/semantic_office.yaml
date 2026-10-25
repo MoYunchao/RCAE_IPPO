@@ -1,0 +1,286 @@
+semantic_objects:
+- id: 1
+  category: victim
+  name: 受困人员A
+  position:
+    x: 10.73
+    y: -2.23
+    z: 0.0
+  radius: 0.5
+  priority: 100
+  description: 被困在倒塌建筑中，急需救援
+- id: 2
+  category: victim
+  name: 受困人员B
+  position:
+    x: 8.93
+    y: 5.34
+    z: 0.0
+  radius: 0.5
+  priority: 100
+  description: 被困在火灾区域附近
+- id: 3
+  category: survivor
+  name: 伤员01
+  position:
+    x: 14.5
+    y: 7.95
+    z: 0.0
+  radius: 0.4
+  priority: 85
+  description: 已脱困但受伤，需要医疗救助
+- id: 4
+  category: emergency_exit
+  name: 门
+  position:
+    x: 12.57
+    y: -6.64
+    z: 0.0
+  radius: 0.9
+  priority: 70
+  description: 房间的门，可能探索到更多未知区域
+- id: 5
+  category: emergency_exit
+  name: 门
+  position:
+    x: 6.28
+    y: -6.03
+    z: 0.0
+  radius: 0.9
+  priority: 70
+  description: 出口
+- id: 6
+  category: fire_hazard
+  name: 火源点
+  position:
+    x: 0.96
+    y: 8.57
+    z: 0.0
+  radius: 1.8
+  priority: 90
+  description: 活跃火源，高温危险区域
+- id: 7
+  category: toxic_hazard
+  name: 化学泄漏点
+  position:
+    x: -11.1
+    y: -8.44
+    z: 0.0
+  radius: 1.5
+  priority: 85
+  description: 化学品泄漏，有毒气体扩散
+- id: 9
+  category: emergency_exit
+  name: 东侧出口
+  position:
+    x: 0.31
+    y: 2.64
+    z: 0.0
+  radius: 1.2
+  priority: 80
+  description: 通往安全区的疏散通道
+- id: 11
+  category: supply_cache
+  name: 物资补给点
+  position:
+    x: 0.27
+    y: -0.51
+    z: 0.0
+  radius: 0.7
+  priority: 65
+  description: 饮用水、食物和应急物资
+- id: 12
+  category: emergency_exit
+  name: 西侧出口
+  position:
+    x: -7.3
+    y: -2.68
+    z: 0.0
+  radius: 1.1
+  priority: 10
+  description: ''
+- id: 13
+  category: emergency_exit
+  name: 新对象
+  position:
+    x: 3.7
+    y: 2.8
+    z: 0.0
+  radius: 1.1
+  priority: 10
+  description: ''
+- id: 14
+  category: emergency_exit
+  name: 新对象
+  position:
+    x: -3.41
+    y: 2.68
+    z: 0.0
+  radius: 0.9
+  priority: 10
+  description: ''
+- id: 15
+  category: emergency_exit
+  name: 新对象
+  position:
+    x: 11.59
+    y: -4.6
+    z: 0.0
+  radius: 1.2
+  priority: 10
+  description: ''
+- id: 16
+  category: emergency_exit
+  name: 新对象
+  position:
+    x: 12.21
+    y: 3.7
+    z: 0.0
+  radius: 0.9
+  priority: 10
+  description: ''
+- id: 17
+  category: emergency_exit
+  name: 新对象
+  position:
+    x: 13.8
+    y: -7.34
+    z: 0.0
+  radius: 0.9
+  priority: 10
+  description: ''
+- id: 18
+  category: emergency_exit
+  name: 新对象
+  position:
+    x: 1.08
+    y: -5.91
+    z: 0.0
+  radius: 1.0
+  priority: 10
+  description: ''
+- id: 19
+  category: emergency_exit
+  name: 新对象
+  position:
+    x: -0.76
+    y: -3.54
+    z: 0.0
+  radius: 0.9
+  priority: 10
+  description: ''
+- id: 22
+  category: victim
+  name: 受困人员
+  position:
+    x: 8.2
+    y: -7.05
+    z: 0.0
+  radius: 0.5
+  priority: 100
+  description: ''
+categories:
+  victim:
+    display_name: 受困人员
+    color:
+    - 1.0
+    - 0.0
+    - 0.0
+    hex_color: '#FF0000'
+    marker_type: sphere
+    structure_coefficient: 0.8
+    hazard_coefficient: 0.7
+    objective_coefficient: 1.0
+  survivor:
+    display_name: 伤员
+    color:
+    - 1.0
+    - 0.5
+    - 0.0
+    hex_color: '#FF8000'
+    marker_type: sphere
+    structure_coefficient: 0.7
+    hazard_coefficient: 0.5
+    objective_coefficient: 0.8
+  structural_hazard:
+    display_name: 结构危险
+    color:
+    - 0.545
+    - 0.271
+    - 0.075
+    hex_color: '#8B4513'
+    marker_type: cube
+    structure_coefficient: 0.3
+    hazard_coefficient: 0.9
+    objective_coefficient: 0.5
+  fire_hazard:
+    display_name: 火源危险
+    color:
+    - 1.0
+    - 0.271
+    - 0.0
+    hex_color: '#FF4500'
+    marker_type: sphere
+    structure_coefficient: 0.4
+    hazard_coefficient: 1.0
+    objective_coefficient: 0.6
+  toxic_hazard:
+    display_name: 有毒危险
+    color:
+    - 1.0
+    - 1.0
+    - 0.0
+    hex_color: '#FFFF00'
+    marker_type: sphere
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.95
+    objective_coefficient: 0.6
+  medical_supply:
+    display_name: 医疗物资
+    color:
+    - 0.0
+    - 1.0
+    - 0.0
+    hex_color: '#00FF00'
+    marker_type: cube
+    structure_coefficient: 0.6
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.7
+  emergency_exit:
+    display_name: 紧急出口
+    color:
+    - 0.0
+    - 0.0
+    - 1.0
+    hex_color: '#0000FF'
+    marker_type: arrow
+    structure_coefficient: 1.0
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.8
+  rescue_equipment:
+    display_name: 救援设备
+    color:
+    - 0.5
+    - 0.5
+    - 0.5
+    hex_color: '#808080'
+    marker_type: cube
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.5
+  supply_cache:
+    display_name: 补给物资
+    color:
+    - 0.0
+    - 0.749
+    - 1.0
+    hex_color: '#00BFFF'
+    marker_type: cube
+    structure_coefficient: 0.5
+    hazard_coefficient: 0.0
+    objective_coefficient: 0.6
+publisher_config:
+  update_rate: 1.0
+  exploration_threshold: 0
+  check_radius: 1.5
+  min_explored_ratio: 0.2
