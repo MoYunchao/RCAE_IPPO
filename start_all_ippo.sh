@@ -31,7 +31,7 @@ if [[ $# -gt 0 && "$1" != -* && "$1" != *":="* ]]; then
 fi
 [[ -f "$MODEL_PATH" ]] || { echo "IPPO model not found: $MODEL_PATH. Train and copy an IPPO checkpoint first." >&2; exit 1; }
 
-python - "$MODEL_PATH" <<'PY'
+python3 - "$MODEL_PATH" <<'PY'
 import sys
 import torch
 p = torch.load(sys.argv[1], map_location='cpu', weights_only=True)
@@ -50,7 +50,7 @@ set -u
 RESULT_BASE="${RESULT_ROOT:-$(pwd)/output/ippo_runs}"
 RUN_DIR="$RESULT_BASE/map_${MAP_VARIANT}/ippo_fuzzy/$(date +%Y%m%d_%H%M%S)_$$"
 mkdir -p "$RUN_DIR"
-python - "$MODEL_PATH" "$RUN_DIR/checkpoint_provenance.json" <<'PY'
+python3 - "$MODEL_PATH" "$RUN_DIR/checkpoint_provenance.json" <<'PY'
 import hashlib,json,sys
 from pathlib import Path
 p=Path(sys.argv[1]).resolve()

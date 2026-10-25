@@ -48,7 +48,7 @@ bash start_all_ippo.sh --map default \
 先关闭其他正在运行的 ROS/Gazebo 实验，再执行：
 
 ```bash
-python -u run_ippo_8runs.py
+python3 -u run_ippo_8runs.py
 ```
 
 顺序为 default 第 1–4 次，随后 maze40 第 1–4 次。每台机器人设计容量均为 0.40 Ah，完整沿用上述单次命令。
@@ -58,7 +58,7 @@ python -u run_ippo_8runs.py
 覆盖率达标、达到任务时限、全员失败、无可达前沿等任务终止原因均保留并计入本轮；不会只选成功结果。
 单轮异常退出、1800 秒内没有任务汇总或进程无法清理时，整个批次中止并记录错误，不会继续启动下一轮。
 Ctrl+C 会清理当前轮并停止整个批次。超时可用 `--timeout-sec 2400` 修改。
-预览八次命令而不启动仿真：`python run_ippo_8runs.py --dry-run`。
+预览八次命令而不启动仿真：`python3 run_ippo_8runs.py --dry-run`。
 
 结果结构：
 
