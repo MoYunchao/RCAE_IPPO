@@ -1,0 +1,622 @@
+{
+  "schema_version": 1,
+  "source_archive": "race_ippo_results.tar.gz",
+  "source_archive_sha256": "5a2e14b299fb63597d03bb48b769f2a63ba086a2f8514709dd3f580c01944784",
+  "target_per_map": 5,
+  "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+  "eligibility_rule": "mission summary with known_cells > 0; retain all outcomes including battery depletion; zero-map attempts are retained as startup failures, not algorithm trials",
+  "records": [
+    {
+      "id": "output/ippo_batches/20261025_210924_288783/default/run_01/results/map_default/ippo_fuzzy/20261025_210925_3913754/summary.json",
+      "map": "default",
+      "counted": true,
+      "exclusion_reason": null,
+      "capacity_ah": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "97b766d2e14c05e3a0b355d256eb5f9d88219216b0b6927f1c88a6f64aa8fec7",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 21:16:40",
+        "stop_reason": "all_robots_failed",
+        "runtime_sec": 403.094,
+        "FCR": 0.84337,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 244.455,
+        "NFR": 3,
+        "known_cells": 320221,
+        "total_roi_cells": 379692,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": true,
+            "failure_time_sec": 356.23670895805117,
+            "active_trajectory_length_m": 82.803,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 1,
+            "failed": true,
+            "failure_time_sec": 339.23070831003133,
+            "active_trajectory_length_m": 82.653,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 2,
+            "failed": true,
+            "failure_time_sec": 402.7486093910411,
+            "active_trajectory_length_m": 79.0,
+            "final_battery": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_batches/20261025_210924_288783/default/run_02/results/map_default/ippo_fuzzy/20261025_211717_3982423/summary.json",
+      "map": "default",
+      "counted": true,
+      "exclusion_reason": null,
+      "capacity_ah": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "255ad5ea57d66f36e3f99fc4acd9b8258a9baf49e7e0ec95882ca752b467cd9d",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 21:24:02",
+        "stop_reason": "all_robots_failed",
+        "runtime_sec": 374.08,
+        "FCR": 0.752621,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 243.582,
+        "NFR": 3,
+        "known_cells": 285764,
+        "total_roi_cells": 379692,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": true,
+            "failure_time_sec": 373.24472056201193,
+            "active_trajectory_length_m": 79.634,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 1,
+            "failed": true,
+            "failure_time_sec": 351.2483112689806,
+            "active_trajectory_length_m": 80.477,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 2,
+            "failed": true,
+            "failure_time_sec": 372.2640964159509,
+            "active_trajectory_length_m": 83.471,
+            "final_battery": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_batches/20261025_210924_288783/default/run_03/results/map_default/ippo_fuzzy/20261025_212439_4044257/summary.json",
+      "map": "default",
+      "counted": false,
+      "exclusion_reason": "startup failure: zero known cells, stationary robots, disconnected map/base TF; raw run retained",
+      "capacity_ah": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "3b3a672d9b76c9a9315a681816544901f822aa7b6bbfe27b251f19044324c724",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 21:25:30",
+        "stop_reason": "no_reachable_frontier",
+        "runtime_sec": 20.07,
+        "FCR": 0.0,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 0.001,
+        "NFR": 0,
+        "known_cells": 0,
+        "total_roi_cells": 379692,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": false,
+            "failure_time_sec": null,
+            "active_trajectory_length_m": 0.0,
+            "final_battery": 0.969717800617218
+          },
+          {
+            "robot_id": 1,
+            "failed": false,
+            "failure_time_sec": null,
+            "active_trajectory_length_m": 0.0,
+            "final_battery": 0.9692133069038391
+          },
+          {
+            "robot_id": 2,
+            "failed": false,
+            "failure_time_sec": null,
+            "active_trajectory_length_m": 0.0,
+            "final_battery": 0.9693130850791931
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_batches/20261025_210924_288783/default/run_04/results/map_default/ippo_fuzzy/20261025_212612_4054532/summary.json",
+      "map": "default",
+      "counted": true,
+      "exclusion_reason": null,
+      "capacity_ah": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "998c14ed57bddfe81fda31914d274f0a6d7926443804c8cb7bf7b277a0973d43",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 21:33:19",
+        "stop_reason": "all_robots_failed",
+        "runtime_sec": 395.078,
+        "FCR": 0.885563,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 240.79,
+        "NFR": 3,
+        "known_cells": 336241,
+        "total_roi_cells": 379692,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": true,
+            "failure_time_sec": 369.77506716398057,
+            "active_trajectory_length_m": 80.939,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 1,
+            "failed": true,
+            "failure_time_sec": 338.76986334391404,
+            "active_trajectory_length_m": 81.413,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 2,
+            "failed": true,
+            "failure_time_sec": 394.77501808688976,
+            "active_trajectory_length_m": 78.438,
+            "final_battery": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_batches/20261025_210924_288783/maze40/run_01/results/map_maze40/ippo_fuzzy/20261025_213356_4120446/summary.json",
+      "map": "maze40",
+      "counted": true,
+      "exclusion_reason": null,
+      "capacity_ah": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "e95d29794f0f44f00ada39787dc135c4279883a8beefe085c4803314ad8fa22f",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 21:40:40",
+        "stop_reason": "all_robots_failed",
+        "runtime_sec": 373.122,
+        "FCR": 0.774756,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 253.719,
+        "NFR": 3,
+        "known_cells": 425404,
+        "total_roi_cells": 549081,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": true,
+            "failure_time_sec": 351.1611762190005,
+            "active_trajectory_length_m": 87.531,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 1,
+            "failed": true,
+            "failure_time_sec": 372.6845894829603,
+            "active_trajectory_length_m": 80.419,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 2,
+            "failed": true,
+            "failure_time_sec": 367.168281616061,
+            "active_trajectory_length_m": 85.77,
+            "final_battery": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_batches/20261025_210924_288783/maze40/run_02/results/map_maze40/ippo_fuzzy/20261025_214117_4168816/summary.json",
+      "map": "maze40",
+      "counted": false,
+      "exclusion_reason": "startup failure: zero known cells, stationary robots, disconnected map/base TF; raw run retained",
+      "capacity_ah": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "11784e7abd743069a1de79fb9cd31da37181496eff0d467702573e60fa0a7d51",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 21:42:09",
+        "stop_reason": "no_reachable_frontier",
+        "runtime_sec": 20.089,
+        "FCR": 0.0,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 0.001,
+        "NFR": 0,
+        "known_cells": 0,
+        "total_roi_cells": 549081,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": false,
+            "failure_time_sec": null,
+            "active_trajectory_length_m": 0.0,
+            "final_battery": 0.9784327149391174
+          },
+          {
+            "robot_id": 1,
+            "failed": false,
+            "failure_time_sec": null,
+            "active_trajectory_length_m": 0.0,
+            "final_battery": 0.9768927693367004
+          },
+          {
+            "robot_id": 2,
+            "failed": false,
+            "failure_time_sec": null,
+            "active_trajectory_length_m": 0.0,
+            "final_battery": 0.9768355488777161
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_batches/20261025_210924_288783/maze40/run_03/results/map_maze40/ippo_fuzzy/20261025_214247_4178845/summary.json",
+      "map": "maze40",
+      "counted": true,
+      "exclusion_reason": null,
+      "capacity_ah": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "e25aa32daf92b2b3b944ddbd4fb903715ef0298056fb8f201f482e703c2fdf56",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 21:50:25",
+        "stop_reason": "all_robots_failed",
+        "runtime_sec": 426.126,
+        "FCR": 0.895301,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 242.351,
+        "NFR": 3,
+        "known_cells": 491593,
+        "total_roi_cells": 549081,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": true,
+            "failure_time_sec": 416.67979149892926,
+            "active_trajectory_length_m": 79.074,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 1,
+            "failed": true,
+            "failure_time_sec": 376.68628346791957,
+            "active_trajectory_length_m": 84.82,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 2,
+            "failed": true,
+            "failure_time_sec": 425.19284216791857,
+            "active_trajectory_length_m": 78.456,
+            "final_battery": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_batches/20261025_210924_288783/maze40/run_04/results/map_maze40/ippo_fuzzy/20261025_215101_41393/summary.json",
+      "map": "maze40",
+      "counted": false,
+      "exclusion_reason": "startup failure: zero known cells, stationary robots, disconnected map/base TF; raw run retained",
+      "capacity_ah": [
+        0.4,
+        0.4,
+        0.4
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "40e3046a2420f9bdbaa9f97b499282b1f082a9ce271242af7f920568f9cab3ed",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 21:51:54",
+        "stop_reason": "no_reachable_frontier",
+        "runtime_sec": 21.088,
+        "FCR": 0.0,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 0.001,
+        "NFR": 0,
+        "known_cells": 0,
+        "total_roi_cells": 549081,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": false,
+            "failure_time_sec": null,
+            "active_trajectory_length_m": 0.0,
+            "final_battery": 0.9782095551490784
+          },
+          {
+            "robot_id": 1,
+            "failed": false,
+            "failure_time_sec": null,
+            "active_trajectory_length_m": 0.0,
+            "final_battery": 0.9759102463722229
+          },
+          {
+            "robot_id": 2,
+            "failed": false,
+            "failure_time_sec": null,
+            "active_trajectory_length_m": 0.0,
+            "final_battery": 0.9760741591453552
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_real_batches/20261025_220537_070774/real/run_01/results/map_real/ippo_fuzzy/20261025_220538_143659/summary.json",
+      "map": "real",
+      "counted": true,
+      "exclusion_reason": null,
+      "capacity_ah": [
+        0.7,
+        0.7,
+        0.7
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "1ea63e7b9791ec8a4c58628eadd51b036c66c949e99e930b50143247444d1b59",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 22:18:39",
+        "stop_reason": "all_robots_failed",
+        "runtime_sec": 750.094,
+        "FCR": 0.938989,
+        "T90_sec": 619.09,
+        "T95_sec": null,
+        "T90_display": "619.090",
+        "T95_display": ">Tmax",
+        "ATL_m": 311.829,
+        "NFR": 3,
+        "known_cells": 171003,
+        "total_roi_cells": 182114,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": true,
+            "failure_time_sec": 673.2764507710235,
+            "active_trajectory_length_m": 108.142,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 1,
+            "failed": true,
+            "failure_time_sec": 749.2952743270434,
+            "active_trajectory_length_m": 96.137,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 2,
+            "failed": true,
+            "failure_time_sec": 635.7871971930144,
+            "active_trajectory_length_m": 107.55,
+            "final_battery": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_real_batches/20261025_220537_070774/real/run_02/results/map_real/ippo_fuzzy/20261025_221916_249019/summary.json",
+      "map": "real",
+      "counted": true,
+      "exclusion_reason": null,
+      "capacity_ah": [
+        0.7,
+        0.7,
+        0.7
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "555f44fd224d0a8d951386e5bfe23f11392f5eed8a94b9f090e1f6a2e69eae4a",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 22:31:13",
+        "stop_reason": "all_robots_failed",
+        "runtime_sec": 685.075,
+        "FCR": 0.855953,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 325.158,
+        "NFR": 3,
+        "known_cells": 155881,
+        "total_roi_cells": 182114,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": true,
+            "failure_time_sec": 627.2434814849403,
+            "active_trajectory_length_m": 115.607,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 1,
+            "failed": true,
+            "failure_time_sec": 684.7601760319667,
+            "active_trajectory_length_m": 105.811,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 2,
+            "failed": true,
+            "failure_time_sec": 682.2700915349415,
+            "active_trajectory_length_m": 103.74,
+            "final_battery": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_real_batches/20261025_220537_070774/real/run_03/results/map_real/ippo_fuzzy/20261025_223150_352117/summary.json",
+      "map": "real",
+      "counted": true,
+      "exclusion_reason": null,
+      "capacity_ah": [
+        0.7,
+        0.7,
+        0.7
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "8c5efd7dbc581efc8a6ef0d29eb7a9187c217f418aa6d19cf2fcb393bc2eba28",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 22:43:55",
+        "stop_reason": "all_robots_failed",
+        "runtime_sec": 693.093,
+        "FCR": 0.858841,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 322.345,
+        "NFR": 3,
+        "known_cells": 156407,
+        "total_roi_cells": 182114,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": true,
+            "failure_time_sec": 692.1940254899673,
+            "active_trajectory_length_m": 98.025,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 1,
+            "failed": true,
+            "failure_time_sec": 641.7102466919459,
+            "active_trajectory_length_m": 110.706,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 2,
+            "failed": true,
+            "failure_time_sec": 628.21376929502,
+            "active_trajectory_length_m": 113.614,
+            "final_battery": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "output/ippo_real_batches/20261025_220537_070774/real/run_04/results/map_real/ippo_fuzzy/20261025_224431_458059/summary.json",
+      "map": "real",
+      "counted": true,
+      "exclusion_reason": null,
+      "capacity_ah": [
+        0.7,
+        0.7,
+        0.7
+      ],
+      "checkpoint_sha256": "7bb31948ea82ba65e2b2276036b8ca235a9e707dea015ddcd02ed38098945f9b",
+      "summary_sha256": "9f5e175133802e540c27ed26ce42d654f04bef734cd6dd7fc4dca9a14aa40ddb",
+      "summary": {
+        "type": "energy_constrained_mission_summary",
+        "timestamp": "2026-10-25 22:59:54",
+        "stop_reason": "all_robots_failed",
+        "runtime_sec": 891.074,
+        "FCR": 0.807785,
+        "T90_sec": null,
+        "T95_sec": null,
+        "T90_display": ">Tmax",
+        "T95_display": ">Tmax",
+        "ATL_m": 270.158,
+        "NFR": 3,
+        "known_cells": 147109,
+        "total_roi_cells": 182114,
+        "robot_metrics": [
+          {
+            "robot_id": 0,
+            "failed": true,
+            "failure_time_sec": 890.6770834859926,
+            "active_trajectory_length_m": 67.824,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 1,
+            "failed": true,
+            "failure_time_sec": 749.690690775984,
+            "active_trajectory_length_m": 100.01,
+            "final_battery": 0.0
+          },
+          {
+            "robot_id": 2,
+            "failed": true,
+            "failure_time_sec": 708.6916457969928,
+            "active_trajectory_length_m": 102.323,
+            "final_battery": 0.0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 """Check summary-driven shutdown, timeout and batch scheduling with fake launches."""
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -13,6 +14,17 @@ ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('batch', ROOT / 'run_ippo_8runs.py')
 batch = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(batch)
+
+
+def prepare_baseline(root):
+    path = root / batch.BASELINE
+    path.parent.mkdir(parents=True, exist_ok=True)
+    records = []
+    for name, count in [('default', 3), ('maze40', 2)]:
+        records.extend({'map': name, 'counted': True, 'capacity_ah': [.4] * 3,
+                        'summary_sha256': f'{name}_{i}'} for i in range(count))
+    path.write_text(json.dumps({'target_per_map': 5,
+        'checkpoint_sha256': hashlib.sha256(b'').hexdigest(), 'records': records}))
 
 
 class BatchTests(unittest.TestCase):
@@ -69,7 +81,7 @@ time.sleep(60)
             pid = int((directory / 'results/pid').read_text())
             self.assertNotIn(pid, batch.process_table())
 
-    def test_eight_runs_seven_pauses_and_portable_model(self):
+    def test_five_supplements_four_pauses_and_portable_model(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             (root / 'install').mkdir()
@@ -77,25 +89,32 @@ time.sleep(60)
             model = root / batch.MODEL
             model.parent.mkdir(parents=True)
             model.touch()
+            prepare_baseline(root)
             calls, pauses = [], []
             def run(command, directory, timeout):
                 calls.append((list(command), directory))
-                return {'stop_reason': 'coverage_target_reached', 'target_reached': True}
+                directory.mkdir(parents=True)
+                path = directory / 'summary.json'
+                path.write_text(json.dumps({'known_cells': 10}))
+                (directory / 'checkpoint_provenance.json').write_text(json.dumps({
+                    'sha256': hashlib.sha256(b'').hexdigest()}))
+                return {'stop_reason': 'coverage_target_reached', 'target_reached': True,
+                        'known_cells': 10, 'summary_path': str(path)}
             with patch.object(batch, 'ROOT', root), patch.object(batch, 'run_once', run), \
                     patch.object(batch.time, 'sleep', pauses.append), \
                     patch.object(sys, 'argv', ['batch']):
                 batch.main()
-            self.assertEqual(len(calls), 8)
-            self.assertEqual([command[3] for command, _ in calls], ['default'] * 4 + ['maze40'] * 4)
+            self.assertEqual(len(calls), 5)
+            self.assertEqual([command[3] for command, _ in calls], ['default'] * 2 + ['maze40'] * 3)
             for command, _ in calls:
                 self.assertFalse(Path(command[4]).is_absolute())
                 self.assertEqual(command[5:], [f'robot{i}_battery_capacity_ah:=0.40' for i in range(3)])
-            self.assertEqual(len(set(directory for _, directory in calls)), 8)
-            self.assertEqual(pauses, [30] * 7)
+            self.assertEqual(len(set(directory for _, directory in calls)), 5)
+            self.assertEqual(pauses, [30] * 4)
             manifest = next((root/'output').rglob('batch_summary.json'))
             data = json.loads(manifest.read_text())
             self.assertEqual(data['status'], 'completed')
-            self.assertEqual(len(data['runs']), 8)
+            self.assertEqual(len(data['runs']), 5)
 
     def test_failed_launch_stops_batch(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -105,6 +124,7 @@ time.sleep(60)
             model = root / batch.MODEL
             model.parent.mkdir(parents=True)
             model.touch()
+            prepare_baseline(root)
             with patch.object(batch, 'ROOT', root), \
                     patch.object(batch, 'run_once', side_effect=RuntimeError('launch failed')) as run, \
                     patch.object(batch.time, 'sleep') as sleep, \

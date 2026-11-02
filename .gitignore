@@ -16,3 +16,7 @@ Thumbs.db
 *.sqlite3
 
 compile_commands.json
+
+# Raw result bundle stays local; the frozen experiment ledger is tracked.
+race_ippo_results.tar.gz
+race_ippo_results_extracted/

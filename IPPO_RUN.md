@@ -43,58 +43,58 @@ bash start_all_ippo.sh --map default \
 另一张地图只需把 `default` 改成 `maze40`。模型路径也可省略，默认就是上述仓库内模型。
 单次结果位于 `output/ippo_runs/map_<地图>/ippo_fuzzy/<时间戳>/`。
 
-## 两张地图各四次，共八次
+## 补充实验：连同已有结果每张地图五次
 
-先关闭其他正在运行的 ROS/Gazebo 实验，再执行：
+文件名沿用 `run_ippo_8runs.py` / `run_ippo_real_4runs.py`，但默认行为已改为补齐五次，不再重新跑八次或四次。
+
+历史基线清单：`configs/ippo_existing_results_20261025.json`，来自 `race_ippo_results.tar.gz`，保存压缩包及各条 summary 的 SHA-256、模型哈希、原始指标和纳入/排除理由。保留所有原始运行记录，不按探索成功率筛选。
+
+| 地图 | 历史任务次数 | 启动异常 | 已有可用次数 | 首次需要补跑 | 每台容量 |
+|---|---:|---:|---:|---:|---:|
+| default（30×30） | 4 | 1 | 3 | 2 | 0.40 Ah |
+| maze40（40×40） | 4 | 2 | 2 | 3 | 0.40 Ah |
+| real | 4 | 0 | 4 | 1 | 0.70 Ah |
+
+旧异常对应 default/run_03、maze40/run_02、maze40/run_04：已知地图格数为 0、机器人未移动，TF 不连通。另两次 `python: command not found` 的批次没有任务汇总，不作为探索样本。正常探索后的电池耗尽、任务时限或其他未完成结果均计入五次，绝不只保留成功结果。
+
+容量必须沿用这批实际结果的 0.40/0.70 Ah；此前讨论过的 0.50 Ah 不混入本组。所有补跑使用同一个 IPPO checkpoint，脚本会验证 SHA-256。
+
+在实验机更新脚本后，无需重新编译 ROS 包。确认没有其他 ROS/Gazebo 实验运行，依次执行：
 
 ```bash
+conda activate robot
+source /opt/ros/humble/setup.bash
 python3 -u run_ippo_8runs.py
-```
-
-顺序为 default 第 1–4 次，随后 maze40 第 1–4 次。每台机器人设计容量均为 0.40 Ah，完整沿用上述单次命令。
-每轮监测本轮目录中的任务 `summary.json`，有有效终止原因后等待 3 秒落盘，再停止该轮启动的进程及子进程。
-清理完成后等待 30 秒启动下一轮，最后一轮结束直接退出。
-
-覆盖率达标、达到任务时限、全员失败、无可达前沿等任务终止原因均保留并计入本轮；不会只选成功结果。
-单轮异常退出、1800 秒内没有任务汇总或进程无法清理时，整个批次中止并记录错误，不会继续启动下一轮。
-Ctrl+C 会清理当前轮并停止整个批次。超时可用 `--timeout-sec 2400` 修改。
-预览八次命令而不启动仿真：`python3 run_ippo_8runs.py --dry-run`。
-
-结果结构：
-
-```text
-output/ippo_batches/<批次时间戳>/
-  batch_summary.json
-  default/run_01/console.log
-  default/run_01/results/map_default/ippo_fuzzy/<运行时间戳>/
-    summary.json
-    energy_mission_metrics.csv
-    checkpoint_provenance.json
-    ippo_infer/...
-  default/run_02/... 至 run_04/...
-  maze40/run_01/... 至 run_04/...
-```
-
-`batch_summary.json` 记录每轮命令、目录、状态、停止原因、FCR 和 T95；每轮目录还保留推理日志及监督器生成的其他 CSV。
-`output/` 被 Git 忽略，需要另行打包传回。
-
-## real 地图四次实验
-
-三个机器人设计容量均为 0.70 Ah，模型与上述实验一致：
-
-```bash
 python3 -u run_ippo_real_4runs.py
 ```
 
-共运行四次，每轮结束并清理进程后等待 30 秒。停止、超时和错误处理与八次脚本共用。
-结果保存于 `output/ippo_real_batches/<批次时间戳>/real/run_01/` 至 `run_04/`，
-批次根目录保存 `batch_summary.json`。预览：`python3 run_ippo_real_4runs.py --dry-run`。
-脚本更新后无需重新编译工作空间。
+第二条实验命令应在第一条结束后再执行。可先预览：
+
+```bash
+python3 run_ippo_8runs.py --dry-run
+python3 run_ippo_real_4runs.py --dry-run
+```
+
+脚本保留本轮 summary、checkpoint_provenance、console.log、推理和轨迹数据；等待任务结束并清理该轮进程后，再等待 30 秒启动下一轮。若 summary 的 known_cells 为 0，则标记 startup_failed、保留原始数据、不计入五次，每个缺失样本最多尝试三次（可通过 --max-startup-attempts 修改）。连续启动异常或其他运行错误会中止批次，避免无限重试。该判断不能修复 SLAM/TF 根因；如果反复失败，应先修复启动环境。
+
+新增结果目录：
+
+```text
+output/ippo_supplement_batches/<批次时间戳>/batch_summary.json
+output/ippo_supplement_batches/<批次时间戳>/<地图>/sample_04/attempt_01/...
+output/ippo_real_supplement_batches/<批次时间戳>/...
+```
+
+每次执行都会合并历史清单与本机 output 下的补跑汇总，按 summary 哈希去重，只补缺少的次数。中断后再次执行原命令即可继续；已形成有效任务汇总、但在清理阶段中断的样本也会恢复计数。已有五次时不再启动仿真。两个脚本共用运行锁，不能同时启动。
+
+跨机器继续补跑时，请同时传递完整的新增批次目录（含 summary 与 provenance），只复制 batch_summary.json 无法核对和恢复计数。历史压缩包和解压原始数据保留在本机、不提交 Git；历史清单会随源码推送。
+
+这轮只调整实验调度与记录，不修改 IPPO 策略、奖励、机器人能耗或 ROS 节点。最终统计保留每张地图五次、同一训练模型的评估粒度；不等同于五个独立训练种子。
 
 ## 整理时的验证
 
 已核对模型哈希，并用此工作空间的推理网络严格加载模型、验证三机器人四维动作输出。
-批量脚本的无 ROS 测试覆盖八次顺序、七次等待、模型相对路径、失败中止、超时、Ctrl+C 清理和单独会话子进程清理：
+随附的无 ROS 检查脚本已随补跑计划调整，包含五次补跑顺序、四次等待、模型相对路径、失败中止、超时、Ctrl+C 清理和单独会话子进程清理。本次仅执行语法与 dry-run 计划检查，未运行该测试脚本，也未启动 ROS 仿真：
 
 ```bash
 python3 tools/test_ippo_batch.py

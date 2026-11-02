@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Run IPPO on real four times at 0.70 Ah, with 30 seconds between runs."""
+"""Supplement existing real-map IPPO results to five trials at 0.70 Ah."""
 from run_ippo_8runs import main
 
 
 if __name__ == '__main__':
-    main(plan=[('real', repeat) for repeat in range(1, 5)],
-         battery_capacity='0.70', batch_folder='ippo_real_batches', description=__doc__)
+    main(maps=('real',), battery_capacity='0.70',
+         batch_folder='ippo_real_supplement_batches', description=__doc__)
