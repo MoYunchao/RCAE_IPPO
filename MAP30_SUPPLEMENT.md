@@ -95,3 +95,9 @@ python3 run_map30_mre_race.py --experiment-root ~/energy_mission --dry-run
 ```
 
 默认外部路径为 compare_with_rl/bandwidth_mre/SenseSimulation_fix 和 main_ablation_greedy/SenseSimulation_fix_v2/SenseSimulation_fix。也可分别用 --mre-workspace、--race-workspace 指定目录，用 --mre-model、--race-model 指定模型。
+
+## 有限电量协议：禁止自动返航充电
+
+MRE 导航入口显式设置 enable_low_battery_handling=False，与 RACE 的导航入口一致。机器人继续探索直至电量耗尽或其他任务结束条件，不自动返航、调用 reset_battery 或补充能量。不要将旧版开启自动充电时产生的结果并入本组有限电量对照；旧输出保留，修复后启动一个新批次。
+
+本项修改位于 simulation_bringup 的 launch 文件，更新后需要重新构建/安装该包，并 source install/setup.bash。启动日志应显示各机器人 low_battery: enabled=false。

@@ -40,8 +40,8 @@ def generate_launch_description():
                         "base_frame": f"{robot_ns}/base_link",
                         "global_map_topic": "/global_map",
                         "local_map_topic": f"/{robot_ns}/map",
-                        "enable_low_battery_handling": True,
-                        "discharge_during_return": False,
+                        # RACE protocol: finite battery, no automatic return or recharge.
+                        "enable_low_battery_handling": False,
                         "low_battery_check_threshold": 0.25,
                         "low_battery_threshold": 0.25,
                         "astar_unknown_cost_multiplier": LaunchConfiguration("astar_unknown_cost_multiplier"),
@@ -50,7 +50,6 @@ def generate_launch_description():
                         "home_y": float(home_pose["y"]),
                         "battery_reset_service": "reset_battery",
                         "battery_discharge_service": "set_discharge_enabled",
-                        "charge_command_topic": "charge_command",
                         "low_battery_metrics_topic": "low_battery_metrics",
                     }
                 ],
