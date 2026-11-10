@@ -15,5 +15,9 @@
     "src/simulation_bringup/launch/full_exploration_system_bandwidth_mre_real.launch.py": "917cab1f6531b6cfaf347305d8006cb562be7da61fb83114221dbdfa8c4cb3d8",
     "models/inference/bandwidth_mre/sync_gain_topk_h1_80000/models/best_model.pt": "916355222913f31dc082abeaeefbaee5613462d78d7cf4717d03ac23762ef7e6"
   },
-  "notes": "Original MRE inference modules, launch files and checkpoint copied without modification. Existing shared ROS packages are reused."
+  "notes": "Original MRE inference modules and checkpoint are unmodified. The integration launch removes a charging-coordinator dependency absent from the RACE workspace; existing shared ROS packages are reused.",
+  "integration_adjustments": {
+    "src/rl_training/launch/rl_bandwidth_mre.launch.py": "Removed charging_station_coordinator node and its unused home/charger arguments; retained MRE inference parameters.",
+    "integrated_launch_sha256": "7606fc667f0919d4014a282712e30085e188bd1776f6d10cf4b97c43dc9419df"
+  }
 }

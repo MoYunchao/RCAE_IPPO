@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-import os
-
-from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
@@ -9,9 +6,6 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    default_home_pose_path = os.path.join(
-        get_package_share_directory("simulation_bringup"), "config", "robot_initial_poses_maze40.yaml"
-    )
     model_path_arg = DeclareLaunchArgument("model_path", default_value="")
     robot_count_arg = DeclareLaunchArgument("robot_count", default_value="3")
     robot_namespace_arg = DeclareLaunchArgument("robot_namespace", default_value="robot_")
@@ -53,8 +47,6 @@ def generate_launch_description():
         "low_battery_metrics_topic_template",
         default_value="/{robot_name}/low_battery_metrics",
     )
-    home_pose_path_arg = DeclareLaunchArgument("home_pose_path", default_value=default_home_pose_path)
-    charger_hold_duration_arg = DeclareLaunchArgument("charger_hold_duration_sec", default_value="10.0")
 
     infer_node = Node(
         package="rl_training",
@@ -124,21 +116,6 @@ def generate_launch_description():
         emulate_tty=True,
     )
 
-    charging_coordinator_node = Node(
-        package="rl_training",
-        executable="charging_station_coordinator",
-        name="charging_station_coordinator",
-        output="screen",
-        parameters=[{
-            "robot_count": LaunchConfiguration("robot_count"),
-            "robot_namespace": LaunchConfiguration("robot_namespace"),
-            "pose_path": LaunchConfiguration("home_pose_path"),
-            "hold_duration_sec": LaunchConfiguration("charger_hold_duration_sec"),
-            "publish_rate_hz": LaunchConfiguration("rate"),
-        }],
-        emulate_tty=True,
-    )
-
     return LaunchDescription(
         [
             model_path_arg,
@@ -170,9 +147,6 @@ def generate_launch_description():
             run_name_arg,
             task_metrics_topic_template_arg,
             low_battery_metrics_topic_template_arg,
-            home_pose_path_arg,
-            charger_hold_duration_arg,
             infer_node,
-            charging_coordinator_node,
         ]
     )
