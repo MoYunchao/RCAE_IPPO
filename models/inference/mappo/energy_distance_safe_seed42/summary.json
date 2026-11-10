@@ -1,0 +1,59 @@
+{
+  "env_steps": 120000,
+  "agent_steps": 360000,
+  "episode_count": 4651,
+  "evaluation_count": 465,
+  "update_count": 235,
+  "episode_reward_mean": 4.482473744285783,
+  "episode_reward_std": 1.251583007422895,
+  "episode_coverage_mean": 0.82564892809223,
+  "episode_coverage_std": 0.08068798842302269,
+  "episode_length_mean": 25.79853794882821,
+  "episode_length_std": 2.312141122933723,
+  "episode_active_trajectory_length_mean": 182.85397043155686,
+  "episode_active_trajectory_length_std": 1.4227962002726642,
+  "episode_failed_robot_count_mean": 3.0,
+  "episode_failed_robot_count_std": 0.0,
+  "episode_mission_time_mean_sec": 233.74742524438764,
+  "episode_mission_time_std_sec": 0.9727516591060319,
+  "done_reason_hist": {
+    "all_robots_failed": 4651
+  },
+  "best_model_selection": {
+    "criterion": "maximize_FCR_then_minimize_NFR_then_ATL",
+    "score": [
+      0.9053164556962026,
+      -3.0,
+      -182.918391979114
+    ]
+  },
+  "best_model_path": "/home/myc/exploration/fuzzy_total/SenseSimulation_fix_python/output/mappo_energy_runs/energy_distance_safe_seed42/models/best_model.pt",
+  "final_model_path": "/home/myc/exploration/fuzzy_total/SenseSimulation_fix_python/output/mappo_energy_runs/energy_distance_safe_seed42/models/final_model.pt",
+  "final_evaluation": {
+    "episodes": 5,
+    "mean_reward": 5.759107753820717,
+    "std_reward": 0.1549493885601374,
+    "mean_coverage": 0.8925367088607595,
+    "std_coverage": 0.025155082647121154,
+    "mean_length": 27.0,
+    "mean_mission_time_sec": 233.8946224329599,
+    "std_mission_time_sec": 1.0308770040785669,
+    "mean_active_trajectory_length_m": 182.71987764452103,
+    "std_active_trajectory_length_m": 0.3042268820070879,
+    "mean_failed_robot_count": 3.0,
+    "std_failed_robot_count": 0.0,
+    "t90_success_count": 4,
+    "mean_t90_sec": 226.24253014005714,
+    "std_t90_sec": 0.13065658841575606,
+    "t95_success_count": 0,
+    "mean_t95_sec": null,
+    "std_t95_sec": 0.0,
+    "done_reason_hist": {
+      "all_robots_failed": 5
+    },
+    "deterministic": true
+  },
+  "train_seconds": 81014.68093031505,
+  "device": "cuda",
+  "saved_at": "2026-06-09 15:05:50"
+}

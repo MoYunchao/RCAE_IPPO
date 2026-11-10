@@ -10,13 +10,13 @@ if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
 
 示例:
   bash start_all_mappo.sh --map maze40 \
-    robot0_battery_capacity_ah:=0.67 \
-    robot1_battery_capacity_ah:=0.71 \
-    robot2_battery_capacity_ah:=0.75 \
+    robot0_battery_capacity_ah:=0.40 \
+    robot1_battery_capacity_ah:=0.40 \
+    robot2_battery_capacity_ah:=0.40 \
     goal_delay_sec:=40.0
 
 默认模型:
-  models/inference/mappo/mappo_v3_simplex_battery_random_30k/models/best_model.pt
+  models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt
 
 说明:
   - 请先激活带有 torch 的环境，例如 conda env `robot`
@@ -47,7 +47,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-DEFAULT_MODEL="$(pwd)/models/inference/mappo/mappo_v3_simplex_battery_random_30k/models/best_model.pt"
+DEFAULT_MODEL="$(pwd)/models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt"
 DEFAULT_RESULT_ROOT="${RESULT_ROOT:-$(pwd)/output/energy_mission_runs}"
 GROUP_NAME="mappo_fuzzy"
 MAP_DIR="map_${MAP_VARIANT}"

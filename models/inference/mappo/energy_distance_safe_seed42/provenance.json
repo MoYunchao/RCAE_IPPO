@@ -1,0 +1,60 @@
+{
+  "algorithm": "MAPPO",
+  "model": "models/best_model.pt",
+  "training_run": "energy_distance_safe_seed42",
+  "sha256": "5f3b416bd683cd315814781de7baa657a48bcc2eb799046a4e30d724c0811ac6",
+  "local_obs_dim": 10,
+  "critic_obs_dim": 26,
+  "hidden_dim": 128,
+  "action": "four independent Beta weights without simplex normalization",
+  "checkpoint_env_steps": 36476,
+  "completed_training_env_steps": 120000,
+  "historical_result_configs": [
+    {
+      "result_config": "map_30/mappo_fuzzy/20260609_194029/rl_infer/config.json",
+      "recorded_model_path": "/home/xiejiaxue/energy_mission/main_ablation_greedy/SenseSimulation_fix_v2/SenseSimulation_fix/models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt",
+      "config_sha256": "ec113f389dfad8cd1640a4e2455c80a0f931bad4caf247789e1bf1c483de4a45"
+    },
+    {
+      "result_config": "map_30/mappo_fuzzy/20260610_151143/rl_infer/config.json",
+      "recorded_model_path": "/home/xiejiaxue/energy_mission/main_ablation_greedy/SenseSimulation_fix_v2/SenseSimulation_fix/models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt",
+      "config_sha256": "90208c001dd7a3b887e234ee80a34d47d11afc9cf64fc341d75a0f5a396d009c"
+    },
+    {
+      "result_config": "map_30/mappo_fuzzy/20260610_164409/rl_infer/config.json",
+      "recorded_model_path": "/home/xiejiaxue/energy_mission/main_ablation_greedy/SenseSimulation_fix_v2/SenseSimulation_fix/models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt",
+      "config_sha256": "d8d6123e49af81348420443f211b2bea522f3b86e3fbb11f84677076380a463b"
+    },
+    {
+      "result_config": "map_30/mappo_fuzzy/20260610_185328/rl_infer/config.json",
+      "recorded_model_path": "/home/xiejiaxue/energy_mission/main_ablation_greedy/SenseSimulation_fix_v2/SenseSimulation_fix/models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt",
+      "config_sha256": "70d232b90b6758d89a2eefd667271a4881d64aed28e388a54c84866cc67f0d97"
+    },
+    {
+      "result_config": "map_40/mappo_fuzzy/20260612_142551/rl_infer/config.json",
+      "recorded_model_path": "/home/xiejiaxue/energy_mission/main_ablation_greedy/SenseSimulation_fix_v2/SenseSimulation_fix/models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt",
+      "config_sha256": "d0582ff0ad24c15a84860cb8f6d23affd2c150672774f1bef28a884415d42911"
+    },
+    {
+      "result_config": "map_40/mappo_fuzzy/20260612_150519/rl_infer/config.json",
+      "recorded_model_path": "/home/xiejiaxue/energy_mission/main_ablation_greedy/SenseSimulation_fix_v2/SenseSimulation_fix/models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt",
+      "config_sha256": "2287499e85993efa60835fc7132b786a7d22b30b70a3bbc9265547289a38e9a1"
+    },
+    {
+      "result_config": "map_real/mappo_fuzzy/20260614_144242/rl_infer/config.json",
+      "recorded_model_path": "/home/xiejiaxue/energy_mission/main_ablation_greedy/SenseSimulation_fix_v2/SenseSimulation_fix/models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt",
+      "config_sha256": "b57189543a2c51222849c143b21201c17712b2f5c9d06129d6365301aa3ed98d"
+    },
+    {
+      "result_config": "map_real/mappo_fuzzy/20260614_195716/rl_infer/config.json",
+      "recorded_model_path": "/home/xiejiaxue/energy_mission/main_ablation_greedy/SenseSimulation_fix_v2/SenseSimulation_fix/models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt",
+      "config_sha256": "9ad9dc93e2304b0e85ae39f3b0d56fb5c19f65358ff389db5f0c69c9587ebb26"
+    },
+    {
+      "result_config": "map_real/mappo_fuzzy/20260614_200757/rl_infer/config.json",
+      "recorded_model_path": "/home/xiejiaxue/energy_mission/main_ablation_greedy/SenseSimulation_fix_v2/SenseSimulation_fix/models/inference/mappo/energy_distance_safe_seed42/models/best_model.pt",
+      "config_sha256": "84566113bb600e8a814dafc70a1b3301344542d09ceb3cff3a7d5299d8d35f75"
+    }
+  ],
+  "provenance_note": "Historical result configs record a model path, not a checkpoint hash. Packaged bytes match the current original training checkpoint and its ROS-workspace copy; the original checkpoint is unmodified."
+}

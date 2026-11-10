@@ -80,3 +80,25 @@ python3 tools/test_ippo_batch.py
 ```
 
 测试使用模拟启动和临时目录，不启动 ROS / Gazebo。`--dry-run` 只核对模型与启动文件并打印命令。
+
+## 仓库内单独启动原 RACE
+
+仓库已附带旧 RACE 结果配置所指向的 `energy_distance_safe_seed42/models/best_model.pt`。
+相邻 config.json、summary.json 是原训练记录；provenance.json 保存文件哈希和九份历史结果配置的引用。
+原训练汇总记录完成 120000 步，最佳 checkpoint 选于 36476 步；这不是后来中断的 mappo_random_battery_seed42 模型。
+历史推理配置没有记录模型哈希，因此证据是其记录路径与当前原训练/ROS 副本的哈希一致性。
+
+在本仓库目录执行，无需原 energy_mission 模型目录：
+
+```bash
+git pull origin main
+conda activate robot
+source /opt/ros/humble/setup.bash
+bash start_all_mappo.sh --map default \
+  robot0_battery_capacity_ah:=0.40 \
+  robot1_battery_capacity_ah:=0.40 \
+  robot2_battery_capacity_ah:=0.40
+```
+
+此次仅修改外层 SH 的默认 checkpoint 路径并添加模型文件，已编译过本仓库时无需重编译。
+`run_map30_mre_race.py` 批量入口仍按前文使用两个外部工作空间；本节是仓库内单次 RACE 入口。
