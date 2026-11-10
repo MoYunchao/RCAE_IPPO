@@ -1,0 +1,19 @@
+{
+  "method": "Bandwidth-MRE",
+  "source_workspace": "/home/myc/exploration/fuzzy_total/v2_compare/energy_mission/compare_with_rl/bandwidth_mre/SenseSimulation_fix",
+  "checkpoint": "models/best_model.pt",
+  "sha256": "916355222913f31dc082abeaeefbaee5613462d78d7cf4717d03ac23762ef7e6",
+  "source_file_sha256": {
+    "start_all_bandwidth_mre.sh": "48c6c7d91f8e2260c40bfa8cadc6519bf2380226c0083a64aa42ccf3a16f745e",
+    "src/rl_training/rl_training/infer_bandwidth_mre.py": "b39cb6b4f362f99f70f1d7c337d9d6712e06bdec6243876f5e7a6d9012b7ac3a",
+    "src/rl_training/rl_training/bandwidth_mre_model.py": "8d993ba4714851130c884e1a1e048cce07f63dd43b550cda7e2c15e0158edaa8",
+    "src/rl_training/rl_training/bandwidth_mre_runtime.py": "86d0e77caa0d0a3f590f83c5715a6418a4e4338dd0604f1f46e7bb1e233cf2fc",
+    "src/rl_training/launch/rl_bandwidth_mre.launch.py": "5af66be36fd0da35c403d223a2d7be174c94507fbe3755ec8baed1ef24626828",
+    "src/simulation_bringup/launch/robot_task_navigator_real.launch.py": "709e0b8a2a7cf0ac5bcf0f487680c06d19720277024ec5e89571fdce4822103a",
+    "src/simulation_bringup/launch/full_exploration_system_bandwidth_mre.launch.py": "5639544771d441cac6246eefcdcf27b8662bcadb4c2f2161505325a254c46003",
+    "src/simulation_bringup/launch/full_exploration_system_bandwidth_mre_maze40.launch.py": "81625662a7f35b8ae5ee9cd298448b87d8586d3fa6b5c1ce914711e32d34cc44",
+    "src/simulation_bringup/launch/full_exploration_system_bandwidth_mre_real.launch.py": "917cab1f6531b6cfaf347305d8006cb562be7da61fb83114221dbdfa8c4cb3d8",
+    "models/inference/bandwidth_mre/sync_gain_topk_h1_80000/models/best_model.pt": "916355222913f31dc082abeaeefbaee5613462d78d7cf4717d03ac23762ef7e6"
+  },
+  "notes": "Original MRE inference modules, launch files and checkpoint copied without modification. Existing shared ROS packages are reused."
+}

@@ -26,6 +26,7 @@ setup(
             'rl_weight_node = rl_training.rl_weight_node:main',
             'rl_fixed_weight_node = rl_training.fixed_weight_node:main',
             'rl_infer_mappo = rl_training.infer_mappo:main',
+            'rl_infer_bandwidth_mre = rl_training.infer_bandwidth_mre:main',
         ],
     },
 )

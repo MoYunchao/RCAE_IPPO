@@ -15,6 +15,8 @@
   <exec_depend>nav_msgs</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>frontier_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>fuzzy_msgs</exec_depend>
   <exec_depend>cure_explore_interfaces</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>

@@ -30,20 +30,10 @@ def sha256(path):
     return digest.hexdigest()
 
 
-def default_experiment_root():
-    candidates = []
-    if os.environ.get('RACE_EXPERIMENT_ROOT'):
-        return Path(os.environ['RACE_EXPERIMENT_ROOT']).expanduser()
-    candidates.extend([Path.home() / 'energy_mission', ROOT.parent / 'energy_mission',
-                       Path.home() / 'exploration/fuzzy_total/v2_compare/energy_mission'])
-    return next((p for p in candidates if (p / RACE_WS).is_dir() and (p / MRE_WS).is_dir()),
-                candidates[0])
-
-
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--experiment-root', type=Path, default=default_experiment_root(),
-                        help='Directory containing main_ablation_greedy/ and compare_with_rl/')
+    parser.add_argument('--experiment-root', type=Path,
+                        help='Optional legacy external root; omit to run both methods in this checkout')
     parser.add_argument('--mre-workspace', type=Path)
     parser.add_argument('--race-workspace', type=Path)
     parser.add_argument('--mre-model', type=Path, help='Explicit model override; relative to MRE workspace')
@@ -68,7 +58,7 @@ def parse_args(argv=None):
 
 
 def build_plan(args):
-    base = args.experiment_root.expanduser().resolve()
+    base = args.experiment_root.expanduser().resolve() if args.experiment_root else None
     jobs = []
     for method, count, workspace, relative_ws, override, default_model, launcher in [
         ('bandwidth_mre', args.mre_runs, args.mre_workspace, MRE_WS, args.mre_model,
@@ -78,7 +68,8 @@ def build_plan(args):
     ]:
         if not count:
             continue
-        work = (workspace.expanduser() if workspace else base / relative_ws).resolve()
+        work = (workspace.expanduser() if workspace else
+                base / relative_ws if base is not None else ROOT).resolve()
         model_arg = override.expanduser() if override else default_model
         model = (model_arg if model_arg.is_absolute() else work / model_arg).resolve()
         if not (work / launcher).is_file():
@@ -223,7 +214,7 @@ def main(argv=None):
     for job in jobs:
         print(f'{job["id"]}: cwd={job["workspace"]}\n  {json.dumps(job["command"])}', flush=True)
     if args.dry_run:
-        print('Dry run only. Actual execution also requires built install/setup.bash in both workspaces.')
+        print('Dry run only. Actual execution requires install/setup.bash in each selected workspace.')
         return
     for job in jobs:
         if not (Path(job['workspace']) / 'install/setup.bash').is_file():
